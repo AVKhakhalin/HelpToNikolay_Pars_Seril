@@ -13,6 +13,7 @@ import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectStringIntParcelable;
 import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListParcelable;
 import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListSerializable;
 import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListSerializableVERYFAST;
+import ru.geekbrains.lession6.edu_parcelable.logic.NewObjectSerializable;
 
 public class MainActivity extends Activity {
 
@@ -22,6 +23,8 @@ public class MainActivity extends Activity {
     MyObjectStringIntParcelable myObjectStringIntParcelable;                // Cоздание класса myObjectStringIntParcelable для передачи через интерфейс Parcelable
     MyObjectsArrayListSerializable myObjectsArrayListSerializable;          // Создание класса myObjectsArrayListSerializable для передачи через интерфейс Serializable
     MyObjectsArrayListSerializableVERYFAST myObjectsArrayListSerializableVERYFAST;  // Создание класса myObjectsArrayListSerializableVERYFAST для передачи через интерфейс Serializable - это самый быстрый способ передать данные, он быстрее, чем Parcelable
+
+    boolean isLandScape = true;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class MainActivity extends Activity {
         listFirst3.add("TTT");
         listFirst3.add("BBB");
         double[] arrayDouble3 = {1.999d, 3938.698d};
-        myObjectsArrayListSerializable = new MyObjectsArrayListSerializable("another name", 99, listFirst3, arrayDouble3);
+        myObjectsArrayListSerializable = new MyObjectsArrayListSerializable("another name", 99, listFirst3, arrayDouble3, new NewObjectSerializable(9));
 
         myObjectsArrayListSerializableVERYFAST = new MyObjectsArrayListSerializableVERYFAST();
         myObjectsArrayListSerializableVERYFAST.setName("VERY FAST");

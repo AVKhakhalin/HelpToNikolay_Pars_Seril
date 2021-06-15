@@ -32,10 +32,9 @@ public class SecondActivity extends Activity
         Toast.makeText(this, String.format("%s, %d", myObjectStringIntParcelable.s, myObjectStringIntParcelable.i), Toast.LENGTH_SHORT).show();
 
         // Получение из intent класса myObjectsArrayListSerializable
-
         MyObjectsArrayListSerializable myObjectsArrayListSerializable = (MyObjectsArrayListSerializable) getIntent().getSerializableExtra("UniqueKey_3");
         Log.d(LOG_TAG, "myObjectsArrayListSerializable: " + myObjectsArrayListSerializable.getAddress());
-        Toast.makeText(this, String.format("%s, %s", myObjectsArrayListSerializable.getAddress(), myObjectsArrayListSerializable.getSizes()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.format("%s, %s, %d", myObjectsArrayListSerializable.getAddress(), myObjectsArrayListSerializable.getSizes(), myObjectsArrayListSerializable.getNewObjectSerializable()), Toast.LENGTH_SHORT).show();
 
         // Получение из intent класса myObjectsArrayListSerializable
         MyObjectsArrayListSerializableVERYFAST MyObjectsArrayListSerializableVERYFAST = (ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListSerializableVERYFAST) getIntent().getSerializableExtra("UniqueKey_4");

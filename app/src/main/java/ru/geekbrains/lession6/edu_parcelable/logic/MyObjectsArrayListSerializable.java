@@ -10,13 +10,16 @@ public class MyObjectsArrayListSerializable implements Serializable {
     private int age;
     private ArrayList<String> address;
     private double[] sizes;
+    private NewObjectSerializable newObjectSerializable;
 
-    public MyObjectsArrayListSerializable(String name, int age, ArrayList<String> address, double[] sizes) {
+
+    public MyObjectsArrayListSerializable(String name, int age, ArrayList<String> address, double[] sizes, NewObjectSerializable newObjectSerializable) {
         super();
         this.name = name;
         this.age = age;
         this.address = address;
         this.sizes = sizes;
+        this.newObjectSerializable = newObjectSerializable;
     }
 
     public ArrayList<String> getAddress() {
@@ -37,5 +40,15 @@ public class MyObjectsArrayListSerializable implements Serializable {
     public String getSizes()
     {
         return Arrays.toString(sizes);
+    }
+
+    public int getNewObjectSerializable()
+    {
+        return newObjectSerializable.getFirst();
+    }
+
+    public void setNewObjectSerializable(int first)
+    {
+        this.newObjectSerializable.setFirst(first);
     }
 }
