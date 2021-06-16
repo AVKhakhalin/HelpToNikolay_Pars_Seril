@@ -12,12 +12,16 @@ public class MyObjectsArrayListParcelable implements Parcelable {
     private String name;
     private ArrayList<String> address;
     private double[] sizes;
+    private NewObjectParcelableSerializble newObjectParcelableSerializble;
+    private NewObjectArrayListParcelable newObjectArrayListParcelable;
 
-    public MyObjectsArrayListParcelable(String name, int age, ArrayList<String> address, double[] sizes) {
+    public MyObjectsArrayListParcelable(String name, int age, ArrayList<String> address, double[] sizes, NewObjectParcelableSerializble newObjectParcelableSerializble, NewObjectArrayListParcelable newObjectArrayListParcelable) {
         this.name = name;
         this.age = age;
         this.address = address;
         this.sizes = sizes;
+        this.newObjectParcelableSerializble = newObjectParcelableSerializble;
+        this.newObjectArrayListParcelable = newObjectArrayListParcelable;
     }
 
     public int getAge() {
@@ -39,12 +43,40 @@ public class MyObjectsArrayListParcelable implements Parcelable {
         return Arrays.toString(sizes);
     }
 
+    public NewObjectParcelableSerializble getNewObjectParcelableSerializble() {
+        return newObjectParcelableSerializble;
+    }
+
+    public void setNewObjectParcelableSerializble(NewObjectParcelableSerializble newObjectParcelableSerializble) {
+        this.newObjectParcelableSerializble = newObjectParcelableSerializble;
+    }
+
+    public String getNewObjectArrayListParcelableValue() {
+        String result = "";
+        if (!(newObjectArrayListParcelable == null))
+        {
+            result += "[";
+            for (int i = 0; i < newObjectArrayListParcelable.getText().size(); i++)
+            {
+                result += (i < newObjectArrayListParcelable.getText().size() - 1 ? (newObjectArrayListParcelable.getText().get(i) + ", ") : newObjectArrayListParcelable.getText().get(i));
+            }
+            result += "]";
+        }
+        return result;
+    }
+
+    public void setNewObjectArrayListParcelable(NewObjectArrayListParcelable newObjectArrayListParcelable) {
+        this.newObjectArrayListParcelable = newObjectArrayListParcelable;
+    }
+
     // Методы для сохранения и передачи класса
     public MyObjectsArrayListParcelable(Parcel source) {
         age = source.readInt();
         name = source.readString();
         address = source.createStringArrayList();
         sizes = source.createDoubleArray();
+        newObjectParcelableSerializble = (NewObjectParcelableSerializble) source.readSerializable();
+        newObjectArrayListParcelable = (NewObjectArrayListParcelable) source.readParcelable(getClass().getClassLoader());
     }
 
     @Override
@@ -53,6 +85,8 @@ public class MyObjectsArrayListParcelable implements Parcelable {
         dest.writeString(name);
         dest.writeStringList(address);
         dest.writeDoubleArray(sizes);
+        dest.writeSerializable(newObjectParcelableSerializble);
+        dest.writeParcelable(newObjectArrayListParcelable, flags);
     }
 
     @Override

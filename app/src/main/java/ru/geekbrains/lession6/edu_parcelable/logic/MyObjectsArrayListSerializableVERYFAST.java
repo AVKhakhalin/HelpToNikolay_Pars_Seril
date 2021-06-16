@@ -9,16 +9,18 @@ public class MyObjectsArrayListSerializableVERYFAST implements Serializable {
 
     private String name;
     private int age;
+    private NewObjectSerializable newObjectSerializable;
 
     public MyObjectsArrayListSerializableVERYFAST()
     {
         super();
     }
 
-    public MyObjectsArrayListSerializableVERYFAST(String name, int age, ArrayList<String> address, double[] sizes) {
+    public MyObjectsArrayListSerializableVERYFAST(String name, int age, NewObjectSerializable newObjectSerializable) {
         super();
         this.name = name;
         this.age = age;
+        this.newObjectSerializable = newObjectSerializable;
     }
 
     public String getName() {
@@ -37,16 +39,23 @@ public class MyObjectsArrayListSerializableVERYFAST implements Serializable {
         this.age = age;
     }
 
+    public NewObjectSerializable getNewObjectSerializable()
+    {
+        return newObjectSerializable;
+    }
+
     private void writeObject(java.io.ObjectOutputStream out) throws IOException
     {
         out.writeUTF(name);
         out.writeInt(age);
+        out.writeObject(newObjectSerializable);
     }
 
     private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException
     {
         name = in.readUTF();
         age = in.readInt();
+        newObjectSerializable = (NewObjectSerializable) in.readObject();
     }
 
     private void readObjectNoData() throws ObjectStreamException

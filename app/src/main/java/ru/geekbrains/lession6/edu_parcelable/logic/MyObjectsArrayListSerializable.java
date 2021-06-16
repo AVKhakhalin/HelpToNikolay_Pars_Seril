@@ -11,15 +11,16 @@ public class MyObjectsArrayListSerializable implements Serializable {
     private ArrayList<String> address;
     private double[] sizes;
     private NewObjectSerializable newObjectSerializable;
+    private ArrayList<NewObjectParcelableSerializble> addressObj;
 
-
-    public MyObjectsArrayListSerializable(String name, int age, ArrayList<String> address, double[] sizes, NewObjectSerializable newObjectSerializable) {
+    public MyObjectsArrayListSerializable(String name, int age, ArrayList<String> address, double[] sizes, NewObjectSerializable newObjectSerializable, ArrayList<NewObjectParcelableSerializble> addressObj) {
         super();
         this.name = name;
         this.age = age;
         this.address = address;
         this.sizes = sizes;
         this.newObjectSerializable = newObjectSerializable;
+        this.addressObj = addressObj;
     }
 
     public ArrayList<String> getAddress() {
@@ -27,6 +28,20 @@ public class MyObjectsArrayListSerializable implements Serializable {
             return address;
         else
             return new ArrayList<String>();
+    }
+
+    public String getAddressObj() {
+        String result = "";
+        if (!(addressObj == null))
+        {
+            result += "[";
+            for (int i = 0; i < addressObj.size(); i++)
+            {
+                result += (i < addressObj.size() - 1 ? String.format("%d, ", addressObj.get(i).getNewNumber()) : String.format("%d", addressObj.get(i).getNewNumber()));
+            }
+            result += "]";
+        }
+        return result;
     }
 
     public String getName() {
@@ -42,9 +57,9 @@ public class MyObjectsArrayListSerializable implements Serializable {
         return Arrays.toString(sizes);
     }
 
-    public int getNewObjectSerializable()
+    public NewObjectSerializable getNewObjectSerializable()
     {
-        return newObjectSerializable.getFirst();
+        return newObjectSerializable;
     }
 
     public void setNewObjectSerializable(int first)

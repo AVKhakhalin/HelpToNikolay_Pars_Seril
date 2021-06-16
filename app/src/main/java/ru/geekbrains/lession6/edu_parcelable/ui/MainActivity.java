@@ -13,6 +13,8 @@ import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectStringIntParcelable;
 import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListParcelable;
 import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListSerializable;
 import ru.geekbrains.lession6.edu_parcelable.logic.MyObjectsArrayListSerializableVERYFAST;
+import ru.geekbrains.lession6.edu_parcelable.logic.NewObjectArrayListParcelable;
+import ru.geekbrains.lession6.edu_parcelable.logic.NewObjectParcelableSerializble;
 import ru.geekbrains.lession6.edu_parcelable.logic.NewObjectSerializable;
 
 public class MainActivity extends Activity {
@@ -35,18 +37,24 @@ public class MainActivity extends Activity {
         listFirst1.add("two");
         listFirst1.add("tree");
         double[] arrayDouble1 = {0.5d, 57.75d};
-        myObjectsArrayListParcelable = new MyObjectsArrayListParcelable("name", 20, listFirst1, arrayDouble1);
+        ArrayList<String> listFirst2 = new ArrayList<>();
+        listFirst2.add("FOUR");
+        listFirst2.add("FIVE");
+        listFirst2.add("SIX");
+        myObjectsArrayListParcelable = new MyObjectsArrayListParcelable("name", 20, listFirst1, arrayDouble1, new NewObjectParcelableSerializble(111), new NewObjectArrayListParcelable(listFirst2));
 
         ArrayList<String> listFirst3 = new ArrayList<>();
         listFirst3.add("ddd");
         listFirst3.add("TTT");
         listFirst3.add("BBB");
         double[] arrayDouble3 = {1.999d, 3938.698d};
-        myObjectsArrayListSerializable = new MyObjectsArrayListSerializable("another name", 99, listFirst3, arrayDouble3, new NewObjectSerializable(9));
+        ArrayList<NewObjectParcelableSerializble> listObj = new ArrayList<>();
+        listObj.add(new NewObjectParcelableSerializble(1000));
+        listObj.add(new NewObjectParcelableSerializble(999));
+        listObj.add(new NewObjectParcelableSerializble(888));
+        myObjectsArrayListSerializable = new MyObjectsArrayListSerializable("another name", 99, listFirst3, arrayDouble3, new NewObjectSerializable(9), listObj);
 
-        myObjectsArrayListSerializableVERYFAST = new MyObjectsArrayListSerializableVERYFAST();
-        myObjectsArrayListSerializableVERYFAST.setName("VERY FAST");
-        myObjectsArrayListSerializableVERYFAST.setAge(123456);
+        myObjectsArrayListSerializableVERYFAST = new MyObjectsArrayListSerializableVERYFAST("VERY FAST", 123456, new NewObjectSerializable(777));
     }
 
     public void onclick(View v) {
